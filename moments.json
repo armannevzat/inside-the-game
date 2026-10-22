@@ -1,0 +1,237 @@
+[
+  {
+    "minute": 25,
+    "second": 16,
+    "kind": "goal",
+    "team": "home",
+    "player_id": "H9",
+    "id": 0,
+    "score_after": {
+      "home": 1,
+      "away": 0
+    },
+    "score_before": {
+      "home": 0,
+      "away": 0
+    },
+    "player": "Farid Taherzadeh",
+    "window": {
+      "home": {
+        "passes": 18,
+        "completed": 17,
+        "shots": 1,
+        "xg": 0.27,
+        "pressure_events": 1,
+        "tackles_won": 0
+      },
+      "away": {
+        "passes": 22,
+        "completed": 20,
+        "shots": 0,
+        "xg": 0.0,
+        "pressure_events": 0,
+        "tackles_won": 0
+      }
+    }
+  },
+  {
+    "minute": 27,
+    "second": 33,
+    "kind": "goal",
+    "team": "home",
+    "player_id": "H3",
+    "id": 1,
+    "score_after": {
+      "home": 2,
+      "away": 0
+    },
+    "score_before": {
+      "home": 1,
+      "away": 0
+    },
+    "player": "Eren Nevzat",
+    "window": {
+      "home": {
+        "passes": 22,
+        "completed": 18,
+        "shots": 2,
+        "xg": 0.4,
+        "pressure_events": 0,
+        "tackles_won": 0
+      },
+      "away": {
+        "passes": 18,
+        "completed": 17,
+        "shots": 1,
+        "xg": 0.19,
+        "pressure_events": 2,
+        "tackles_won": 1
+      }
+    }
+  },
+  {
+    "minute": 47,
+    "second": 21,
+    "kind": "goal",
+    "team": "away",
+    "player_id": "A3",
+    "id": 2,
+    "score_after": {
+      "home": 2,
+      "away": 1
+    },
+    "score_before": {
+      "home": 2,
+      "away": 0
+    },
+    "player": "Orhan Patlican",
+    "window": {
+      "home": {
+        "passes": 24,
+        "completed": 21,
+        "shots": 1,
+        "xg": 0.07,
+        "pressure_events": 2,
+        "tackles_won": 0
+      },
+      "away": {
+        "passes": 16,
+        "completed": 14,
+        "shots": 1,
+        "xg": 0.26,
+        "pressure_events": 3,
+        "tackles_won": 1
+      }
+    }
+  },
+  {
+    "minute": 53,
+    "second": 0,
+    "kind": "swing",
+    "team": "home",
+    "change": 4.5,
+    "id": 3,
+    "score_after": {
+      "home": 2,
+      "away": 1
+    },
+    "window": {
+      "home": {
+        "passes": 28,
+        "completed": 20,
+        "shots": 1,
+        "xg": 0.15,
+        "pressure_events": 0,
+        "tackles_won": 0
+      },
+      "away": {
+        "passes": 12,
+        "completed": 9,
+        "shots": 0,
+        "xg": 0.0,
+        "pressure_events": 0,
+        "tackles_won": 0
+      }
+    }
+  },
+  {
+    "minute": 56,
+    "second": 54,
+    "kind": "goal",
+    "team": "away",
+    "player_id": "A5",
+    "id": 4,
+    "score_after": {
+      "home": 2,
+      "away": 2
+    },
+    "score_before": {
+      "home": 2,
+      "away": 1
+    },
+    "player": "Huseyin Zeytinoglu",
+    "window": {
+      "home": {
+        "passes": 21,
+        "completed": 13,
+        "shots": 0,
+        "xg": 0.0,
+        "pressure_events": 3,
+        "tackles_won": 0
+      },
+      "away": {
+        "passes": 19,
+        "completed": 15,
+        "shots": 1,
+        "xg": 0.05,
+        "pressure_events": 1,
+        "tackles_won": 0
+      }
+    }
+  },
+  {
+    "minute": 71,
+    "second": 0,
+    "kind": "swing",
+    "team": "away",
+    "change": -4.7,
+    "id": 5,
+    "score_after": {
+      "home": 2,
+      "away": 2
+    },
+    "window": {
+      "home": {
+        "passes": 15,
+        "completed": 12,
+        "shots": 1,
+        "xg": 0.16,
+        "pressure_events": 2,
+        "tackles_won": 1
+      },
+      "away": {
+        "passes": 25,
+        "completed": 22,
+        "shots": 2,
+        "xg": 0.49,
+        "pressure_events": 2,
+        "tackles_won": 2
+      }
+    }
+  },
+  {
+    "minute": 71,
+    "second": 47,
+    "kind": "goal",
+    "team": "away",
+    "player_id": "A9",
+    "id": 6,
+    "score_after": {
+      "home": 2,
+      "away": 3
+    },
+    "score_before": {
+      "home": 2,
+      "away": 2
+    },
+    "player": "Zeki Simitci",
+    "window": {
+      "home": {
+        "passes": 15,
+        "completed": 12,
+        "shots": 1,
+        "xg": 0.16,
+        "pressure_events": 2,
+        "tackles_won": 1
+      },
+      "away": {
+        "passes": 25,
+        "completed": 22,
+        "shots": 2,
+        "xg": 0.49,
+        "pressure_events": 2,
+        "tackles_won": 2
+      }
+    }
+  }
+]
