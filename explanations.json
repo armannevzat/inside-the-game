@@ -1,0 +1,58 @@
+[
+  {
+    "headline": "Taherzadeh gives Kazafani United the lead",
+    "explanation": "Farid Taherzadeh's goal put Kazafani United 1\u20130 up. In the five minutes beforehand Kazafani had a slightly stronger build-up, completing 18 passes to Magusa Athletic's 15.",
+    "source": "ai",
+    "moment_id": 0,
+    "minute": 25,
+    "kind": "goal"
+  },
+  {
+    "headline": "Nevzat doubles Kazafani's lead",
+    "explanation": "Eren Nevzat's goal made it 2-0 to Kazafani United. Kazafani had edged the build-up, completing 20 passes to Magusa's 15 in the five minutes beforehand, producing the chance he converted.",
+    "source": "ai",
+    "moment_id": 1,
+    "minute": 27,
+    "kind": "goal"
+  },
+  {
+    "headline": "Patlican pulls one back",
+    "explanation": "Orhan Patlican's goal made it 2-1, cutting Magusa Athletic's deficit. In the five minutes before, Kazafani United completed more passes (20 to 13) while Magusa Athletic registered more pressure events (4 to 2).",
+    "source": "ai",
+    "moment_id": 2,
+    "minute": 47,
+    "kind": "goal"
+  },
+  {
+    "headline": "Momentum shifts to Kazafani United",
+    "explanation": "The balance of the match shifted towards Kazafani United. They had 20 completed passes to Magusa Athletic's 9 and registered the only shot (xG 0.15) in the five minutes before the swing.",
+    "source": "ai",
+    "moment_id": 3,
+    "minute": 54,
+    "kind": "swing"
+  },
+  {
+    "headline": "Zeytinoglu levels for Magusa Athletic",
+    "explanation": "Huseyin Zeytinoglu's goal levelled the score at 2-2 for Magusa Athletic. In the prior five minutes there were no shots; Magusa completed 14 passes to Kazafani's 13, while Kazafani registered three pressure events to Magusa's one.",
+    "source": "ai",
+    "moment_id": 4,
+    "minute": 56,
+    "kind": "goal"
+  },
+  {
+    "headline": "Simitci puts Magusa 3-2 ahead",
+    "explanation": "Zeki Simitci's strike put Magusa Athletic 3-2 ahead. In the five minutes beforehand Magusa had more control, completing 21 passes to Kazafani's 13 as they edged possession and created the opportunity.",
+    "source": "ai",
+    "moment_id": 5,
+    "minute": 71,
+    "kind": "goal"
+  },
+  {
+    "headline": "Momentum shifts to Kazafani United",
+    "explanation": "The balance of the match shifted towards Kazafani United. In the five minutes before the swing Kazafani had the only shot (1) and 0.28 xG, while Magusa Athletic registered no shots and had more pressing (2 to 1).",
+    "source": "ai",
+    "moment_id": 6,
+    "minute": 77,
+    "kind": "swing"
+  }
+]

@@ -74,12 +74,15 @@ SWING_THRESHOLD = 4.0
 MIN_GAP = 8
 last_swing = -MIN_GAP
 
-for m in range(WINDOW + SWING_WINDOW - 1, 90):
-    change = smooth[m] - smooth[m - SWING_WINDOW]
-    if abs(change) >= SWING_THRESHOLD and m - last_swing >= MIN_GAP:
+goal_moments = [(mo["minute"], mo["team"]) for mo in moments if mo["kind"] == "goal"]
+
+for m in range(WINDOW + SWING_WINDOW, 90):
+    change = smooth[m - 1] - smooth[m - 1 - SWING_WINDOW]
+    team = "home" if change > 0 else "away"
+    goal_in_window = any(t == team and m - SWING_WINDOW <= gm < m for gm, t in goal_moments)
+    if abs(change) >= SWING_THRESHOLD and m - last_swing >= MIN_GAP and not goal_in_window:
         moments.append({"minute": m, "second": 0, "kind": "swing",
-                        "team": "home" if change > 0 else "away",
-                        "change": round(change, 1)})
+                        "team": team, "change": round(change, 1)})
         last_swing = m
 
 moments.sort(key=lambda mo: (mo["minute"], mo["second"]))
@@ -103,11 +106,14 @@ def score_at(minute, second):
     return score
 
 
-def window_stats(start_min, end_min):
+def window_stats(moment_minute, moment_second, length_seconds=300):
+    end = moment_minute * 60 + moment_second
+    start = end - length_seconds
     result = {t: {"passes": 0, "completed": 0, "shots": 0, "xg": 0.0,
                   "pressure_events": 0, "tackles_won": 0} for t in ("home", "away")}
     for e in events:
-        if start_min <= e["minute"] <= end_min:
+        t = e["minute"] * 60 + e["second"]
+        if start <= t < end:
             s = result[e["team"]]
             if e["type"] == "pass":
                 s["passes"] += 1
@@ -120,10 +126,9 @@ def window_stats(start_min, end_min):
                 s["pressure_events"] += 1
             elif e["type"] == "tackle" and e["won"]:
                 s["tackles_won"] += 1
-    for t in result:
-        result[t]["xg"] = round(result[t]["xg"], 2)
+    for team in result:
+        result[team]["xg"] = round(result[team]["xg"], 2)
     return result
-
 
 for i, mo in enumerate(moments):
     mo["id"] = i
@@ -135,7 +140,7 @@ for i, mo in enumerate(moments):
         mo["score_before"] = before
     if "player_id" in mo:
         mo["player"] = player_name(mo["team"], mo["player_id"])
-    mo["window"] = window_stats(max(0, mo["minute"] - 4), mo["minute"])
+    mo["window"] = window_stats(mo["minute"], mo["second"])
 
 with open("moments.json", "w") as f:
     json.dump(moments, f, indent=2)

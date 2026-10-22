@@ -96,4 +96,4 @@ class MatchMeta(BaseModel):
     away_club: str  # fictional
     seed: int
     players: dict[str, dict]  # player_id -> {name, team, position, shirt}
- 
+

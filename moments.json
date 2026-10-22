@@ -17,19 +17,19 @@
     "player": "Farid Taherzadeh",
     "window": {
       "home": {
-        "passes": 18,
-        "completed": 17,
-        "shots": 1,
-        "xg": 0.27,
+        "passes": 21,
+        "completed": 18,
+        "shots": 0,
+        "xg": 0.0,
         "pressure_events": 1,
         "tackles_won": 0
       },
       "away": {
-        "passes": 22,
-        "completed": 20,
+        "passes": 17,
+        "completed": 15,
         "shots": 0,
         "xg": 0.0,
-        "pressure_events": 0,
+        "pressure_events": 2,
         "tackles_won": 0
       }
     }
@@ -52,20 +52,20 @@
     "player": "Eren Nevzat",
     "window": {
       "home": {
-        "passes": 22,
-        "completed": 18,
-        "shots": 2,
-        "xg": 0.4,
+        "passes": 24,
+        "completed": 20,
+        "shots": 1,
+        "xg": 0.27,
         "pressure_events": 0,
         "tackles_won": 0
       },
       "away": {
-        "passes": 18,
-        "completed": 17,
+        "passes": 16,
+        "completed": 15,
         "shots": 1,
         "xg": 0.19,
         "pressure_events": 2,
-        "tackles_won": 1
+        "tackles_won": 0
       }
     }
   },
@@ -87,25 +87,25 @@
     "player": "Orhan Patlican",
     "window": {
       "home": {
-        "passes": 24,
-        "completed": 21,
+        "passes": 25,
+        "completed": 20,
         "shots": 1,
         "xg": 0.07,
         "pressure_events": 2,
         "tackles_won": 0
       },
       "away": {
-        "passes": 16,
-        "completed": 14,
-        "shots": 1,
-        "xg": 0.26,
-        "pressure_events": 3,
+        "passes": 15,
+        "completed": 13,
+        "shots": 0,
+        "xg": 0.0,
+        "pressure_events": 4,
         "tackles_won": 1
       }
     }
   },
   {
-    "minute": 53,
+    "minute": 54,
     "second": 0,
     "kind": "swing",
     "team": "home",
@@ -160,42 +160,12 @@
         "tackles_won": 0
       },
       "away": {
-        "passes": 19,
-        "completed": 15,
-        "shots": 1,
-        "xg": 0.05,
+        "passes": 18,
+        "completed": 14,
+        "shots": 0,
+        "xg": 0.0,
         "pressure_events": 1,
         "tackles_won": 0
-      }
-    }
-  },
-  {
-    "minute": 71,
-    "second": 0,
-    "kind": "swing",
-    "team": "away",
-    "change": -4.7,
-    "id": 5,
-    "score_after": {
-      "home": 2,
-      "away": 2
-    },
-    "window": {
-      "home": {
-        "passes": 15,
-        "completed": 12,
-        "shots": 1,
-        "xg": 0.16,
-        "pressure_events": 2,
-        "tackles_won": 1
-      },
-      "away": {
-        "passes": 25,
-        "completed": 22,
-        "shots": 2,
-        "xg": 0.49,
-        "pressure_events": 2,
-        "tackles_won": 2
       }
     }
   },
@@ -205,7 +175,7 @@
     "kind": "goal",
     "team": "away",
     "player_id": "A9",
-    "id": 6,
+    "id": 5,
     "score_after": {
       "home": 2,
       "away": 3
@@ -217,20 +187,50 @@
     "player": "Zeki Simitci",
     "window": {
       "home": {
-        "passes": 15,
-        "completed": 12,
+        "passes": 17,
+        "completed": 13,
         "shots": 1,
         "xg": 0.16,
         "pressure_events": 2,
         "tackles_won": 1
       },
       "away": {
-        "passes": 25,
-        "completed": 22,
-        "shots": 2,
-        "xg": 0.49,
-        "pressure_events": 2,
+        "passes": 24,
+        "completed": 21,
+        "shots": 1,
+        "xg": 0.13,
+        "pressure_events": 1,
         "tackles_won": 2
+      }
+    }
+  },
+  {
+    "minute": 77,
+    "second": 0,
+    "kind": "swing",
+    "team": "home",
+    "change": 4.6,
+    "id": 6,
+    "score_after": {
+      "home": 2,
+      "away": 3
+    },
+    "window": {
+      "home": {
+        "passes": 22,
+        "completed": 18,
+        "shots": 1,
+        "xg": 0.28,
+        "pressure_events": 1,
+        "tackles_won": 1
+      },
+      "away": {
+        "passes": 18,
+        "completed": 17,
+        "shots": 0,
+        "xg": 0.0,
+        "pressure_events": 2,
+        "tackles_won": 1
       }
     }
   }
