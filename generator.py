@@ -45,7 +45,10 @@ def make_pass(seq, minute, second, team_key, period):
     passer, receiver = random.sample(player_ids, 2)
 
     start = Location(x=random.uniform(0, 105), y=random.uniform(0, 68))
-    end = Location(x=random.uniform(0, 105), y=random.uniform(0, 68))
+    end = Location(
+        x=min(105, max(0, start.x + random.uniform(-30, 30))),
+        y=min(68, max(0, start.y + random.uniform(-20, 20))),
+    )
     distance = ((end.x - start.x) ** 2 + (end.y - start.y) ** 2) ** 0.5
 
     return PassEvent(
