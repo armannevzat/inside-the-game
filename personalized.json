@@ -1,0 +1,256 @@
+{
+  "languages": {
+    "en": "English",
+    "tr": "Turkish"
+  },
+  "focus_players": [
+    "H9",
+    "H3",
+    "A9"
+  ],
+  "moments": [
+    {
+      "moment_id": 0,
+      "minute": 25,
+      "second": 16,
+      "kind": "goal",
+      "team": "Kazafani United",
+      "player_id": "H9",
+      "en": {
+        "headline": "Taherzadeh gives Kazafani United the lead",
+        "analyst": "Farid Taherzadeh's goal put Kazafani United 1–0 up. In the five minutes before the strike Kazafani's build-up was slightly stronger, completing 18 passes to Magusa Athletic's 15; Magusa recorded 2 pressure events to Kazafani's 1.",
+        "casual": "Farid Taherzadeh scored to make it 1–0 for Kazafani United after a tidy build-up; Magusa Athletic had been pressing more in the minutes before the goal."
+      },
+      "tr": {
+        "headline": "Taherzadeh, Kazafani United'ı öne geçirdi",
+        "analyst": "Farid Taherzadeh'ın golü Kazafani United'ı 1–0 öne geçirdi. Golden önceki beş dakika içinde Kazafani United'ın kurduğu yapı biraz daha güçlüydü; Kazafani United 18 pas tamamladı, Magusa Athletic 15; Magusa Athletic 2 pres olayı kaydederken Kazafani United 1 kaydetti.",
+        "casual": "Farid Taherzadeh, derli toplu bir ataktan sonra Kazafani United'ı 1–0 öne geçirdi; golden önceki dakikalarda Magusa Athletic daha fazla pres uyguluyordu."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai+edited"
+      }
+    },
+    {
+      "moment_id": 1,
+      "minute": 27,
+      "second": 33,
+      "kind": "goal",
+      "team": "Kazafani United",
+      "player_id": "H3",
+      "en": {
+        "headline": "Nevzat doubles Kazafani's lead",
+        "analyst": "Eren Nevzat's finish made it 2-0. In the five minutes beforehand Kazafani completed 20 passes to Magusa's 15, producing the opening; their xG was 0.27 versus Magusa's 0.19.",
+        "casual": "Eren Nevzat scored to make it 2-0 after Kazafani completed 20 passes in the five minutes beforehand."
+      },
+      "tr": {
+        "headline": "Nevzat, Kazafani'nin farkını ikiye çıkardı",
+        "analyst": "Eren Nevzat'ın bitirişi skoru 2-0 yaptı. Önceki beş dakikada Kazafani, Magusa'nın 15'ine karşılık 20 pas tamamlayarak açılışı hazırladı; onların xG'si 0.27, Magusa'nın ise 0.19'du.",
+        "casual": "Eren Nevzat, Kazafani'nin önceki beş dakikada 20 pas tamamlamasının ardından skoru 2-0 yaptı."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai+edited"
+      }
+    },
+    {
+      "moment_id": 2,
+      "minute": 47,
+      "second": 21,
+      "kind": "goal",
+      "team": "Magusa Athletic",
+      "player_id": "A3",
+      "en": {
+        "headline": "Patlican pulls one back",
+        "analyst": "In the build-up Kazafani United completed 20 passes to Magusa Athletic's 13, while Magusa registered 4 pressure events to Kazafani's 2. Orhan Patlican finished the move to make it 2-1.",
+        "casual": "Orhan Patlican scored, cutting Magusa Athletic's deficit after Magusa applied more pressure in the minutes before."
+      },
+      "tr": {
+        "headline": "Patlican farkı bire indirdi",
+        "analyst": "Hazırlık aşamasında Kazafani United 20 pas tamamlarken, Magusa Athletic 13 tamamladı; Magusa 4 baskı olayı kaydederken Kazafani 2 kaydetti. Orhan Patlican hareketi bitirerek skoru 2-1 yaptı.",
+        "casual": "Orhan Patlican gol attı; önceki dakikalarda Magusa Athletic daha fazla baskı kurmuştu ve Patlican farkı azalttı."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai"
+      }
+    },
+    {
+      "moment_id": 3,
+      "minute": 54,
+      "second": 0,
+      "kind": "swing",
+      "team": "Kazafani United",
+      "player_id": null,
+      "en": {
+        "headline": "Momentum shifts to Kazafani United",
+        "analyst": "Kazafani United's build-up dominated the five minutes before the swing: they completed 20 passes to Magusa Athletic's 9 and registered the only shot (xG 0.15). That sequence shifted the balance of the match towards Kazafani United, reflected in the 2–1 scoreline at 54:00.",
+        "casual": "Kazafani United moved ahead to make it 2–1 after a spell when they completed more passes and had the only shot before the swing."
+      },
+      "tr": {
+        "headline": "Momentum Kazafani United'e geçti",
+        "analyst": "Kazafani United'in pozisyon kurma girişimleri, hareketten önceki beş dakikayı domine etti: 20 pas tamamladılar, Magusa Athletic ise 9 pas yaptı ve tek şutu onlar kaydetti (xG 0.15). Bu seri maçın dengesini Kazafani United lehine kaydırdı ve bu 54:00'teki 2–1 skoruna yansıdı.",
+        "casual": "Kazafani United, hareketten önceki dönemde daha fazla pas yapıp tek şutu bulan periyodun ardından 2–1 öne geçti."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai"
+      }
+    },
+    {
+      "moment_id": 4,
+      "minute": 56,
+      "second": 54,
+      "kind": "goal",
+      "team": "Magusa Athletic",
+      "player_id": "A5",
+      "en": {
+        "headline": "Zeytinoglu levels for Magusa Athletic",
+        "analyst": "Huseyin Zeytinoglu levelled for Magusa Athletic, finishing the move. In the five minutes before the goal there were no shots; Magusa completed 14 passes to Kazafani's 13, while Kazafani registered three pressure events to Magusa's one.",
+        "casual": "Huseyin Zeytinoglu scored to level for Magusa Athletic after a spell with no shots; Magusa had completed 14 passes in the five minutes beforehand."
+      },
+      "tr": {
+        "headline": "Zeytinoglu, Magusa Athletic için eşitliği sağladı",
+        "analyst": "Huseyin Zeytinoglu, Magusa Athletic için eşitliği sağladı, atağı bitirerek. Gol öncesindeki beş dakikada şut yoktu; Magusa 14 pas tamamladı, Kazafani 13; Kazafani three baskı olayı kaydederken Magusa one kaydetti.",
+        "casual": "Huseyin Zeytinoglu, şutsuz bir dönem sonrası Magusa Athletic için eşitliği sağladı; Magusa gol öncesindeki beş dakikada 14 pas tamamlamıştı."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai+edited"
+      }
+    },
+    {
+      "moment_id": 5,
+      "minute": 71,
+      "second": 47,
+      "kind": "goal",
+      "team": "Magusa Athletic",
+      "player_id": "A9",
+      "en": {
+        "headline": "Simitci puts Magusa 3-2 ahead",
+        "analyst": "Zeki Simitci's strike put Magusa Athletic 3-2 ahead. In the five minutes beforehand Magusa's build-up was stronger, completing 21 passes to Kazafani's 13 while Kazafani registered 2 pressure events. That relative control created the opening Simitci finished.",
+        "casual": "Zeki Simitci scored to make it 3-2 after Magusa dominated the build-up, completing 21 passes in the period before the goal."
+      },
+      "tr": {
+        "headline": "Simitci Magusa'yı 3-2 öne geçirdi",
+        "analyst": "Zeki Simitci'nin şutu Magusa Athletic'i 3-2 öne geçirdi. Golden önceki beş dakikada Magusa'nın hücum organizasyonu daha güçlüydü; o dönemde Magusa 21 pas tamamladı, Kazafani 13 pas yaptı ve Kazafani 2 pres kaydetti. Bu göreli hakimiyet, Simitci'nin bitirdiği fırsatı yarattı.",
+        "casual": "Zeki Simitci, Magusa'nın hücum hazırlığında üstün olmasının ardından, gol öncesi dönemde 21 pasla skoru 3-2 yaptı."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai"
+      }
+    },
+    {
+      "moment_id": 6,
+      "minute": 77,
+      "second": 0,
+      "kind": "swing",
+      "team": "Kazafani United",
+      "player_id": null,
+      "en": {
+        "headline": "Momentum shifts to Kazafani United",
+        "analyst": "The balance shifted to Kazafani United. In the five minutes before the swing Kazafani completed 18 passes and had the only shot (1), worth 0.28 xG; Magusa Athletic completed 17 passes, had no shots and registered more pressing (2 to 1).",
+        "casual": "Kazafani United swung momentum by having the only shot in the five minutes and looking more threatening, while Magusa Athletic did more pressing."
+      },
+      "tr": {
+        "headline": "Üstünlük Kazafani United'e geçti",
+        "analyst": "Denge Kazafani United lehine kaydı. Değişimin olduğu beş dakika içinde Kazafani United 18 pas tamamladı ve tek şutu (1) vardı; bu 0.28 xG değerindeydi. Magusa Athletic 17 pas tamamladı, şut atmadı ve daha fazla pres yaptı (2 to 1).",
+        "casual": "Kazafani United, beş dakika içinde tek şutu atarak üstünlüğü ele geçirdi ve daha tehditkâr görünürken, Magusa Athletic daha fazla pres yaptı."
+      },
+      "source": {
+        "personas": "ai",
+        "translation": "ai+edited"
+      }
+    }
+  ],
+  "players": {
+    "H9": {
+      "name": "Farid Taherzadeh",
+      "club": "Kazafani United",
+      "position": "FWD",
+      "stats": {
+        "passes": 35,
+        "completed": 23,
+        "shots": 4,
+        "on_target": 1,
+        "xg": 0.77,
+        "goals": 1,
+        "tackles_won": 1,
+        "pressures": 2,
+        "pass_completion_pct": 66
+      },
+      "moment_ids": [
+        0
+      ],
+      "en": {
+        "watch": "Farid Taherzadeh scored in the 25th minute for Kazafani United and had 4 shots."
+      },
+      "tr": {
+        "watch": "Farid Taherzadeh 25th dakikada Kazafani United adına gol attı ve 4 şut çekti."
+      },
+      "source": {
+        "watch": "ai",
+        "translation": "ai"
+      }
+    },
+    "H3": {
+      "name": "Eren Nevzat",
+      "club": "Kazafani United",
+      "position": "DEF",
+      "stats": {
+        "passes": 29,
+        "completed": 21,
+        "shots": 1,
+        "on_target": 1,
+        "xg": 0.13,
+        "goals": 1,
+        "tackles_won": 1,
+        "pressures": 2,
+        "pass_completion_pct": 72
+      },
+      "moment_ids": [
+        1
+      ],
+      "en": {
+        "watch": "Eren Nevzat scored in the 27th minute for Kazafani United and completed 21 passes."
+      },
+      "tr": {
+        "watch": "Eren Nevzat, 27. dakikada Kazafani United için gol attı ve 21 pas tamamladı."
+      },
+      "source": {
+        "watch": "ai",
+        "translation": "ai"
+      }
+    },
+    "A9": {
+      "name": "Zeki Simitci",
+      "club": "Magusa Athletic",
+      "position": "FWD",
+      "stats": {
+        "passes": 33,
+        "completed": 30,
+        "shots": 1,
+        "on_target": 1,
+        "xg": 0.36,
+        "goals": 1,
+        "tackles_won": 1,
+        "pressures": 2,
+        "pass_completion_pct": 91
+      },
+      "moment_ids": [
+        5
+      ],
+      "en": {
+        "watch": "Zeki Simitci scored a 71st-minute goal to put Magusa Athletic ahead, complementing his polished passing and a shot on target."
+      },
+      "tr": {
+        "watch": "Zeki Simitci, Magusa Athletic'i öne geçiren 71st dakikada gol attı; bu gol, onun rafine pasları ve isabetli bir şutunu tamamladı."
+      },
+      "source": {
+        "watch": "ai",
+        "translation": "ai"
+      }
+    }
+  }
+}
