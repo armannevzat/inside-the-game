@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en" data-look="broadcast">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turning Points</title>
+<script>
+  // Pick the look from the address: ?look=programme, otherwise broadcast
+  document.documentElement.dataset.look =
+    new URLSearchParams(location.search).get("look") === "programme" ? "programme" : "broadcast";
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600&family=Barlow+Condensed:ital,wght@1,700;1,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     LOOK 1: TV broadcast graphics (navy, angled panels)
+     ========================================================= */
+  html[data-look="broadcast"] {
+    --bg: #15181D; --ink: #FFFFFF; --muted: rgba(255,255,255,.68); --rule: rgba(255,255,255,.2);
+    --panel: rgba(255,255,255,.06);
+    --home: #E3242B; --away: #3AA8F0; --board: #FFFFFF; --on-board: #15181D;
+    --pitch-a: #20252D; --pitch-b: #252B34; --pitch-line: rgba(255,255,255,.55);
+    --display: "Barlow Condensed", "Arial Narrow", sans-serif; --dw: 800; --ds: italic;
+    --body: "Barlow", system-ui, sans-serif;
+  }
+  /* =========================================================
+     LOOK 2: Matchday programme (paper, poster type, colour blocks)
+     ========================================================= */
+  html[data-look="programme"] {
+    --bg: #F5F5F0; --ink: #161616; --muted: #5A5A55; --rule: #161616;
+    --panel: transparent;
+    --home: #C8102E; --away: #1C7CC7; --board: #161616; --on-board: #FFFFFF;
+    --pitch-a: #3B8A4C; --pitch-b: #439555; --pitch-line: rgba(255,255,255,.85);
+    --display: "Anton", Impact, sans-serif; --dw: 400; --ds: normal;
+    --body: "Source Serif 4", Georgia, serif;
+  }
+  :root { --on-pitch: #FFFFFF; }
+
+  /* ---------- Shared layout ---------- */
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+  main { max-width: 960px; margin: 0 auto; padding: 16px 16px 56px; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .club, .digits, .title h1, h2, .clock, .moment h3, .stat b {
+    font-family: var(--display); font-weight: var(--dw); font-style: var(--ds); line-height: 1.05;
+  }
+
+  .board { display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; margin-top: 8px; }
+  .club { display: flex; align-items: center; gap: 12px; padding: 12px 18px; font-size: 1.7rem; text-transform: uppercase; color: #FFFFFF; }
+  .club.home { background: var(--home); }
+  .club.away { background: var(--away); justify-content: flex-end; text-align: right; }
+  .club svg { width: 46px; flex: none; }
+  .digits { background: var(--board); color: var(--on-board); padding: 10px 28px; text-align: center; font-size: 3.2rem; font-variant-numeric: tabular-nums; display: grid; align-content: center; }
+  .digits small { display: block; font: 600 .78rem/1.5 var(--body); font-style: normal; opacity: .75; }
+
+  .title h1 { margin: 22px 0 4px; font-size: 2.8rem; text-transform: uppercase; }
+  .title p { margin: 0; color: var(--muted); max-width: 64ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 18px; margin: 20px 0; }
+  .group label { display: block; font-size: .82rem; color: var(--muted); margin-bottom: 4px; }
+  .seg { display: inline-flex; border: 2px solid var(--ink); }
+  .seg button { background: transparent; color: var(--ink); border: 0; padding: 7px 14px; cursor: pointer; font: 600 .95rem var(--body); }
+  .seg button + button { border-left: 2px solid var(--ink); }
+  .seg button.on { background: var(--ink); color: var(--bg); }
+  select { background: var(--bg); color: var(--ink); border: 2px solid var(--ink); border-radius: 0; padding: 7px 10px; font: 600 .95rem var(--body); }
+
+  h2 { font-size: 1.5rem; margin: 0 0 10px; text-transform: uppercase; }
+  .pitch-wrap, #playerPanel { margin: 20px 0; }
+  svg.pitch { width: 100%; height: auto; display: block; }
+  .marker { cursor: pointer; }
+  .marker:hover .dot { stroke-width: 4; }
+  .key { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 6px 0 10px; }
+  .stat { font-size: .82rem; color: var(--muted); }
+  .stat b { display: block; font-size: 2rem; color: var(--ink); }
+  .watch { font-size: 1.08rem; max-width: 62ch; margin: 0 0 6px; }
+
+  .moment { display: grid; grid-template-columns: 88px 1fr; gap: 16px; transition: opacity .2s; }
+  .moment.dim { opacity: .3; }
+  .clock { font-variant-numeric: tabular-nums; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: .82rem; color: var(--muted); }
+  .kind { font: 600 .8rem/1.6 var(--body); font-style: normal; padding: 0 8px; color: #FFFFFF; }
+  .team-home .kind { background: var(--home); }
+  .team-away .kind { background: var(--away); }
+  .kind.swing { background: transparent !important; color: var(--ink); }
+  .team-home .kind.swing { box-shadow: inset 0 0 0 2px var(--home); }
+  .team-away .kind.swing { box-shadow: inset 0 0 0 2px var(--away); }
+  .src { margin-left: auto; font-style: italic; }
+  .moment h3 { margin: 6px 0; font-size: 1.6rem; }
+  .moment p { margin: 0 0 8px; max-width: 64ch; }
+  details summary { cursor: pointer; color: var(--muted); font-size: .88rem; }
+  table { border-collapse: collapse; margin-top: 6px; font-size: .9rem; width: 100%; max-width: 440px; font-variant-numeric: tabular-nums; }
+  td, th { border-bottom: 1px solid var(--rule); padding: 4px 6px; text-align: right; }
+  td:first-child, th:first-child { text-align: left; font-weight: 400; }
+  th.home { color: var(--home); } th.away { color: var(--away); }
+  #error { color: var(--home); font-weight: 600; }
+    footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: .78rem; color: var(--muted); max-width: 64ch; }
+
+  /* ---------- Broadcast-only details ---------- */
+  [data-look="broadcast"] body { background: linear-gradient(180deg, #2A2F38 0, #15181D 460px) var(--bg); }
+  [data-look="broadcast"] .club.home { clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%); padding-right: 30px; }
+  [data-look="broadcast"] .club.away { clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%); padding-left: 30px; }
+  [data-look="broadcast"] .digits { clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%); margin: 0 -6px; padding: 10px 36px; }
+  [data-look="broadcast"] .seg { transform: skewX(-12deg); }
+  [data-look="broadcast"] .seg button span { display: inline-block; transform: skewX(12deg); }
+  [data-look="broadcast"] .pitch-wrap,
+  [data-look="broadcast"] #playerPanel,
+  [data-look="broadcast"] .moment {
+    background: var(--panel); padding: 14px; border-top: 3px solid var(--ink);
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+  }
+  [data-look="broadcast"] .moment { margin-bottom: 12px; }
+  [data-look="broadcast"] .clock {
+    height: 50px; display: grid; place-items: center; font-size: 2rem; color: #FFFFFF;
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  }
+  [data-look="broadcast"] .team-home .clock { background: var(--home); }
+  [data-look="broadcast"] .team-away .clock { background: var(--away); }
+  [data-look="broadcast"] .moment h3 { text-transform: uppercase; }
+  [data-look="broadcast"] .moment.focus { border-top-color: var(--home); box-shadow: inset 0 0 0 2px var(--ink); }
+
+  /* ---------- Programme-only details ---------- */
+  [data-look="programme"] .board { border: 4px solid var(--ink); }
+  [data-look="programme"] .club { font-size: 2rem; }
+  [data-look="programme"] .digits { font-size: 3.8rem; }
+  [data-look="programme"] .title h1 { font-size: 4.2rem; margin-top: 26px; }
+  [data-look="programme"] .title p { font-style: italic; font-size: 1.05rem; }
+  [data-look="programme"] h2 { font-size: 1.8rem; }
+  [data-look="programme"] .pitch-wrap,
+  [data-look="programme"] #playerPanel { border-top: 4px solid var(--rule); padding-top: 12px; }
+  [data-look="programme"] .moment { border-top: 2px solid var(--rule); padding: 16px 0; }
+  [data-look="programme"] .clock { font-size: 3.4rem; }
+  [data-look="programme"] .team-home .clock { color: var(--home); }
+  [data-look="programme"] .team-away .clock { color: var(--away); }
+  [data-look="programme"] .moment h3 { font-family: var(--body); font-weight: 600; font-style: normal; font-size: 1.45rem; line-height: 1.2; }
+  [data-look="programme"] .moment.focus { border-top: 6px solid var(--ink); }
+
+  @media (max-width: 640px) {
+    .board { grid-template-columns: 1fr; }
+    .club, .digits { clip-path: none !important; margin: 0 !important; }
+    .club.away { flex-direction: row-reverse; justify-content: flex-end; text-align: left; }
+    .club { font-size: 1.4rem !important; }
+    .title h1 { font-size: 2.6rem !important; }
+    .moment { grid-template-columns: 64px 1fr; gap: 12px; }
+    [data-look="programme"] .clock { font-size: 2.4rem; }
+    [data-look="broadcast"] .clock { font-size: 1.5rem; height: 40px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="board" id="board"></div>
+
+  <div class="title">
+    <h1>Turning Points</h1>
+  </div>
+
+  <div class="controls">
+    <div class="group"><label id="l-persona"></label><div class="seg" id="persona"></div></div>
+    <div class="group"><label id="l-lang"></label><div class="seg" id="lang"></div></div>
+    <div class="group"><label id="l-player" for="player"></label><select id="player"></select></div>
+  </div>
+
+  <div id="error"></div>
+  <section class="pitch-wrap"><h2 id="l-momentum"></h2><div id="chart"></div><div class="key" id="key"></div></section>
+  <section id="playerPanel" hidden></section>
+  <section id="cards"></section>
+  <footer id="replay"></footer>
+</main>
+
+<script>
+// ---------- Interface text in both languages ----------
+const T = {
+  en: { persona: "View", analyst: "Analyst", casual: "Casual fan", lang: "Language", player: "Player focus",
+        none: "Whole match", momentum: "Who had the upper hand", fulltime: "Full time",
+        key: "Bars show momentum (5-minute average). Footballs are goals, arrows are momentum swings. Tap one to jump to it.",
+        evidence: "Evidence: the 5 minutes before", passes: "Completed passes", shots: "Shots", xg: "xG",
+        press: "Pressing actions", tackles: "Tackles won", goals: "Goals", completion: "Pass completion",
+        goal: "Goal", swing: "Momentum swing", big_chance: "Big chance",
+        ai: "Written by AI", "ai+edited": "Written by AI, corrected by a human", fallback: "Template text",
+        replay: "Why the match turned, explained from the data. Replay mode: the AI text was generated in advance and every number in it checked against the match data." },
+  tr: { persona: "Görünüm", analyst: "Analist", casual: "Taraftar", lang: "Dil", player: "Oyuncu odağı",
+        none: "Tüm maç", momentum: "Üstünlük kimdeydi", fulltime: "Maç sonu",
+        key: "Çubuklar momentumu gösterir (5 dakikalık ortalama). Toplar gol, oklar momentum değişimidir. Gitmek için birine dokunun.",
+        evidence: "Kanıt: önceki 5 dakika", passes: "Tamamlanan pas", shots: "Şut", xg: "xG",
+        press: "Pres", tackles: "Kazanılan müdahale", goals: "Gol", completion: "Pas isabeti",
+        goal: "Gol", swing: "Momentum değişimi", big_chance: "Büyük fırsat",
+        ai: "Yapay zekâ yazdı", "ai+edited": "Yapay zekâ yazdı, insan düzeltti", fallback: "Şablon metin",
+        replay: "Maçın neden döndüğü, veriden açıklanıyor. Tekrar modu: yapay zekâ metni önceden üretildi ve içindeki her sayı maç verisiyle doğrulandı." }
+};
+const LANG_LABEL = { en: "English", tr: "Türkçe" };
+
+const state = { persona: "analyst", lang: "en", player: "" };
+const D = {};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const t = key => T[state.lang][key] ?? key;
+const DISPLAY = `font-family:var(--display);font-weight:var(--dw);font-style:var(--ds)`;
+
+// ---------- Fictional club badges ----------
+const SHIELD = "M20 2 L38 8 V24 C38 36 30 43 20 46 C10 43 2 36 2 24 V8 Z";
+
+function crest(side) {
+  let emblem = "";
+  if (side === "home") {
+    // Kazafani United: olive branch (a curved stem with leaves on alternating sides)
+    const points = [[14.6, 33.1, "L"], [16.7, 29.4, "R"], [19, 25.5, "L"], [21.5, 21.6, "R"], [24.2, 17.5, "L"], [26, 14.8, "R"]];
+    const leaves = points.map(([px, py, s]) => s === "L"
+      ? `<ellipse cx="${px - 2.4}" cy="${py - 2}" rx="3.6" ry="1.5" transform="rotate(-128 ${px - 2.4} ${py - 2})"/>`
+      : `<ellipse cx="${px + 3.1}" cy="${py + 0.1}" rx="3.6" ry="1.5" transform="rotate(-10 ${px + 3.1} ${py + 0.1})"/>`).join("");
+    emblem = `<path d="M11 40 Q18 26 28 12" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <g fill="#FFFFFF">${leaves}<ellipse cx="29.2" cy="9.5" rx="3.6" ry="1.5" transform="rotate(-69 29.2 9.5)"/></g>`;
+  } else {
+    // Magusa Athletic: castle wall with battlements across the lower half, and a gate
+    emblem = `<clipPath id="clip-away"><path d="${SHIELD}"/></clipPath>
+      <g clip-path="url(#clip-away)">
+        <path fill="#FFFFFF" d="M0 48 V24 H4.5 V18 H9.5 V24 H13.2 V18 H18.2 V24 H21.8 V18 H26.8 V24 H30.5 V18 H35.5 V24 H40 V48 Z"/>
+        <path stroke="var(--away)" stroke-width="1" d="M0 31 H40 M0 38 H16 M24 38 H40 M11 24 V31 M29 24 V31 M7 31 V38 M33 31 V38"/>
+        <path fill="var(--away)" d="M16 48 V39 A4 4 0 0 1 24 39 V48 Z"/>
+      </g>`;
+  }
+  return `<svg viewBox="0 0 40 48" aria-hidden="true">
+    <path d="${SHIELD}" fill="var(--${side})"/>${emblem}
+    <path d="${SHIELD}" fill="none" stroke="#FFFFFF" stroke-width="2"/></svg>`;
+}
+
+// ---------- Load the three JSON files ----------
+async function getJSON(file) {
+  const r = await fetch(file);
+  if (!r.ok) throw new Error(`${file}: ${r.status}`);
+  return r.json();
+}
+
+async function start() {
+  try {
+    const [timeline, pers, moments] = await Promise.all(
+      ["timeline.json", "personalized.json", "moments.json"].map(getJSON));
+    D.timeline = timeline;
+    D.pers = pers;
+    D.evidence = Object.fromEntries((Array.isArray(moments) ? moments : moments.moments).map(m => [m.id, m]));
+    render();
+  } catch (e) {
+    document.getElementById("error").textContent =
+      "The match data didn't load (" + e.message + "). Start a local server in the project folder: python -m http.server 8000";
+  }
+}
+
+// ---------- Controls ----------
+function segmented(id, options, key) {
+  const el = document.getElementById(id);
+  el.innerHTML = options.map(([value, label]) =>
+    `<button data-v="${value}" class="${state[key] === value ? "on" : ""}" aria-pressed="${state[key] === value}"><span>${esc(label)}</span></button>`).join("");
+  el.querySelectorAll("button").forEach(b => b.onclick = () => { state[key] = b.dataset.v; render(); });
+}
+
+function renderControls() {
+  for (const k of ["persona", "lang", "player", "momentum"]) document.getElementById("l-" + k).textContent = t(k);
+  document.getElementById("replay").textContent = t("replay");
+  document.getElementById("key").textContent = t("key");
+  segmented("persona", [["analyst", t("analyst")], ["casual", t("casual")]], "persona");
+  segmented("lang", Object.keys(D.pers.languages).map(k => [k, LANG_LABEL[k] || D.pers.languages[k]]), "lang");
+
+  const sel = document.getElementById("player");
+  sel.innerHTML = `<option value="">${esc(t("none"))}</option>` +
+    D.pers.focus_players.map(id => `<option value="${id}" ${state.player === id ? "selected" : ""}>${esc(D.pers.players[id].name)}</option>`).join("");
+  sel.onchange = () => { state.player = sel.value; render(); };
+}
+
+// ---------- Scoreboard (score counted from the goal moments) ----------
+function renderBoard() {
+  const { home, away } = D.timeline;
+  const goals = D.pers.moments.filter(m => m.kind === "goal");
+  const h = goals.filter(m => m.team === home).length, a = goals.filter(m => m.team === away).length;
+  document.getElementById("board").innerHTML = `
+    <div class="club home">${crest("home")}<span>${esc(home)}</span></div>
+    <div class="digits">${h}–${a}<small>${esc(t("fulltime"))}</small></div>
+    <div class="club away"><span>${esc(away)}</span>${crest("away")}</div>`;
+}
+
+// ---------- Momentum drawn on a pitch: kick-off on the left, half-time on the halfway line ----------
+function renderChart() {
+  const tl = D.timeline, W = 900, H = 330, pad = 22;
+  const L = pad, R = W - pad, Tp = pad, B = H - pad, mid = H / 2, len = R - L, wid = B - Tp;
+  const x = m => L + m * len / 90;
+  const maxAbs = Math.max(...tl.smooth.map(Math.abs)) || 1;
+  const y = v => mid - v * (wid / 2 - 8) / maxAbs;
+  const chalk = `stroke="var(--pitch-line)" stroke-width="2" fill="none"`;
+  const boxD = 16.5 / 105 * len, boxH = 40.3 / 68 * wid, sixD = 5.5 / 105 * len, sixH = 18.3 / 68 * wid;
+
+  let s = `<svg class="pitch" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t("momentum"))}">`;
+  for (let i = 0; i < 10; i++)
+    s += `<rect x="${L + i * len / 10}" y="${Tp}" width="${len / 10}" height="${wid}" fill="var(--pitch-${i % 2 ? "b" : "a"})"/>`;
+  s += `<rect x="${L}" y="${Tp}" width="${len}" height="${wid}" ${chalk}/>`;
+  s += `<line x1="${x(45)}" x2="${x(45)}" y1="${Tp}" y2="${B}" ${chalk}/>`;
+  s += `<circle cx="${x(45)}" cy="${mid}" r="${wid * 9.15 / 68}" ${chalk}/>`;
+  for (const [x0, dir] of [[L, 1], [R, -1]]) {
+    s += `<rect x="${dir > 0 ? x0 : x0 - boxD}" y="${mid - boxH / 2}" width="${boxD}" height="${boxH}" ${chalk}/>`;
+    s += `<rect x="${dir > 0 ? x0 : x0 - sixD}" y="${mid - sixH / 2}" width="${sixD}" height="${sixH}" ${chalk}/>`;
+  }
+
+  const bw = len / 90;
+  tl.minutes.forEach((m, i) => {
+    const v = tl.smooth[i], top = Math.min(y(v), mid), h = Math.abs(y(v) - mid);
+    s += `<rect x="${x(m) + .5}" y="${top}" width="${Math.max(bw - 1, 1)}" height="${h}" fill="var(--${v >= 0 ? "home" : "away"})" opacity=".92"/>`;
+  });
+  s += `<text x="${L + 8}" y="${Tp + 20}" fill="var(--on-pitch)" font-size="17" style="${DISPLAY}"><tspan fill="var(--home)">▲</tspan> ${esc(tl.home)}</text>`;
+  s += `<text x="${L + 8}" y="${B - 9}" fill="var(--on-pitch)" font-size="17" style="${DISPLAY}"><tspan fill="var(--away)">▼</tspan> ${esc(tl.away)}</text>`;
+  s += `<text x="${x(45)}" y="${B + 16}" fill="var(--muted)" font-size="12" text-anchor="middle">45'</text>`;
+
+  for (const m of D.pers.moments) {
+    const cx = x(m.minute + (m.second || 0) / 60), home = m.team === tl.home, side = home ? "home" : "away";
+    const cy = home ? Tp + 42 : B - 42;
+    const shape = m.kind === "goal"
+      ? `<circle class="dot" cx="${cx}" cy="${cy}" r="9" fill="#FFFFFF" stroke="var(--${side})" stroke-width="3"/>`
+      : `<path class="dot" d="M${cx - 8} ${cy + (home ? 6 : -6)} L${cx} ${cy + (home ? -8 : 8)} L${cx + 8} ${cy + (home ? 6 : -6)} Z" fill="#FFFFFF" stroke="var(--${side})" stroke-width="3"/>`;
+    s += `<g class="marker" tabindex="0" role="link" data-id="${m.moment_id}" aria-label="${m.minute}' ${esc(m[state.lang].headline)}">
+      <line x1="${cx}" x2="${cx}" y1="${Tp}" y2="${B}" stroke="var(--on-pitch)" stroke-opacity=".35" stroke-dasharray="3 4"/>
+      ${shape}
+      <text x="${cx}" y="${home ? cy + 27 : cy - 17}" fill="var(--on-pitch)" font-size="16" text-anchor="middle" style="${DISPLAY}">${m.minute}'</text>
+      <title>${esc(m[state.lang].headline)}</title></g>`;
+  }
+  s += `</svg>`;
+  const el = document.getElementById("chart");
+  el.innerHTML = s;
+  el.querySelectorAll(".marker").forEach(g => {
+    const go = () => document.getElementById("card-" + g.dataset.id).scrollIntoView({ behavior: "smooth", block: "center" });
+    g.onclick = go;
+    g.onkeydown = e => { if (e.key === "Enter") go(); };
+  });
+}
+
+// ---------- Player focus panel ----------
+function renderPlayer() {
+  const panel = document.getElementById("playerPanel");
+  if (!state.player) { panel.hidden = true; return; }
+  const p = D.pers.players[state.player], s = p.stats;
+  const stat = (label, value) => `<div class="stat"><b>${esc(value)}</b>${esc(label)}</div>`;
+  panel.hidden = false;
+  panel.innerHTML = `<h2>${esc(p.name)}</h2>
+    <div class="meta">${esc(p.club)}, ${esc(p.position)}</div>
+    <div class="stats">
+      ${stat(t("passes"), `${s.completed}/${s.passes}`)}
+      ${stat(t("completion"), s.pass_completion_pct + "%")}
+      ${stat(t("shots"), s.shots)}
+      ${stat(t("xg"), s.xg)}
+      ${stat(t("goals"), s.goals)}
+      ${stat(t("tackles"), s.tackles_won)}
+      ${stat(t("press"), s.pressures)}
+    </div>
+    <p class="watch">${esc(p[state.lang].watch)}</p>
+    <div class="meta"><span class="src">${esc(t(p.source[state.lang === "en" ? "watch" : "translation"]))}</span></div>`;
+}
+
+// ---------- Moment timeline ----------
+function evidenceTable(id) {
+  const ev = D.evidence[id];
+  if (!ev || !ev.window) return "";
+  const w = ev.window, h = w.home || {}, a = w.away || {};
+  const row = (label, k) => `<tr><td>${esc(label)}</td><td>${h[k] ?? 0}</td><td>${a[k] ?? 0}</td></tr>`;
+  return `<details ${state.persona === "analyst" ? "open" : ""}><summary>${esc(t("evidence"))}</summary>
+    <table><tr><th></th><th class="home">${esc(D.timeline.home)}</th><th class="away">${esc(D.timeline.away)}</th></tr>
+    ${row(t("passes"), "completed")}${row(t("shots"), "shots")}${row(t("xg"), "xg")}${row(t("press"), "pressure_events")}
+    </table></details>`;
+}
+
+function renderCards() {
+  const home = D.timeline.home;
+  document.getElementById("cards").innerHTML = D.pers.moments.map(m => {
+    const text = m[state.lang];
+    const src = m.source[state.lang === "en" ? "personas" : "translation"];
+    const focus = state.player ? (m.player_id === state.player ? "focus" : "dim") : "";
+    return `<article class="moment team-${m.team === home ? "home" : "away"} ${focus}" id="card-${m.moment_id}">
+      <div class="clock">${m.minute}'</div>
+      <div>
+        <div class="meta"><span class="kind ${m.kind}">${esc(t(m.kind))}</span><span>${esc(m.team)}</span><span class="src">${esc(t(src))}</span></div>
+        <h3>${esc(text.headline)}</h3>
+        <p>${esc(text[state.persona])}</p>
+        ${evidenceTable(m.moment_id)}
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function render() {
+  document.documentElement.lang = state.lang;
+  renderControls(); renderBoard(); renderChart(); renderPlayer(); renderCards();
+}
+
+start();
+</script>
+</body>
+</html>
