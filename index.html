@@ -4,17 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Turning Points</title>
-<script>
-  // Pick the look from the address: ?look=programme, otherwise broadcast
-  document.documentElement.dataset.look =
-    new URLSearchParams(location.search).get("look") === "programme" ? "programme" : "broadcast";
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600&family=Barlow+Condensed:ital,wght@1,700;1,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
 <style>
   /* =========================================================
-     LOOK 1: TV broadcast graphics (navy, angled panels)
+     TV broadcast look: graphite, angled panels
      ========================================================= */
   html[data-look="broadcast"] {
     --bg: #15181D; --ink: #FFFFFF; --muted: rgba(255,255,255,.68); --rule: rgba(255,255,255,.2);
@@ -23,17 +18,6 @@
     --pitch-a: #20252D; --pitch-b: #252B34; --pitch-line: rgba(255,255,255,.55);
     --display: "Barlow Condensed", "Arial Narrow", sans-serif; --dw: 800; --ds: italic;
     --body: "Barlow", system-ui, sans-serif;
-  }
-  /* =========================================================
-     LOOK 2: Matchday programme (paper, poster type, colour blocks)
-     ========================================================= */
-  html[data-look="programme"] {
-    --bg: #F5F5F0; --ink: #161616; --muted: #5A5A55; --rule: #161616;
-    --panel: transparent;
-    --home: #C8102E; --away: #1C7CC7; --board: #161616; --on-board: #FFFFFF;
-    --pitch-a: #3B8A4C; --pitch-b: #439555; --pitch-line: rgba(255,255,255,.85);
-    --display: "Anton", Impact, sans-serif; --dw: 400; --ds: normal;
-    --body: "Source Serif 4", Georgia, serif;
   }
   :root { --on-pitch: #FFFFFF; }
 
@@ -121,21 +105,6 @@
   [data-look="broadcast"] .moment h3 { text-transform: uppercase; }
   [data-look="broadcast"] .moment.focus { border-top-color: var(--home); box-shadow: inset 0 0 0 2px var(--ink); }
 
-  /* ---------- Programme-only details ---------- */
-  [data-look="programme"] .board { border: 4px solid var(--ink); }
-  [data-look="programme"] .club { font-size: 2rem; }
-  [data-look="programme"] .digits { font-size: 3.8rem; }
-  [data-look="programme"] .title h1 { font-size: 4.2rem; margin-top: 26px; }
-  [data-look="programme"] .title p { font-style: italic; font-size: 1.05rem; }
-  [data-look="programme"] h2 { font-size: 1.8rem; }
-  [data-look="programme"] .pitch-wrap,
-  [data-look="programme"] #playerPanel { border-top: 4px solid var(--rule); padding-top: 12px; }
-  [data-look="programme"] .moment { border-top: 2px solid var(--rule); padding: 16px 0; }
-  [data-look="programme"] .clock { font-size: 3.4rem; }
-  [data-look="programme"] .team-home .clock { color: var(--home); }
-  [data-look="programme"] .team-away .clock { color: var(--away); }
-  [data-look="programme"] .moment h3 { font-family: var(--body); font-weight: 600; font-style: normal; font-size: 1.45rem; line-height: 1.2; }
-  [data-look="programme"] .moment.focus { border-top: 6px solid var(--ink); }
 
   @media (max-width: 640px) {
     .board { grid-template-columns: 1fr; }
@@ -144,7 +113,6 @@
     .club { font-size: 1.4rem !important; }
     .title h1 { font-size: 2.6rem !important; }
     .moment { grid-template-columns: 64px 1fr; gap: 12px; }
-    [data-look="programme"] .clock { font-size: 2.4rem; }
     [data-look="broadcast"] .clock { font-size: 1.5rem; height: 40px; }
   }
 </style>
