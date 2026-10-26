@@ -2,7 +2,7 @@
 
 **A synthetic match insights engine: it finds the moments a football match turned, explains *why* using evidence from the data, and tells the story differently for an analyst, a casual fan, a chosen player, and a second language.**
 
-**Live demo:** LIVE_URL_HERE
+**Live demo:** https://turningpoints2026.z28.web.core.windows.net/
 Built for the Microsoft x Premier League "Inside the Game" hackathon (Synthetic Match Insights Engine challenge). All clubs, players and match data are fictional and synthetic.
 
 ---
